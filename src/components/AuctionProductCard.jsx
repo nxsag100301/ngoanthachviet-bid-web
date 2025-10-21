@@ -1,0 +1,65 @@
+import React, { useState } from 'react'
+
+import images from '@/constants/images'
+import Chip from './Chip'
+import CountdownTimer from './CountdownTimer'
+import { Button } from './ui/button'
+import BidModal from './BidModal'
+
+const AuctionProductCard = () => {
+  const [isOpenBidModal, setIsOpenBidModal] = useState(false)
+
+  return (
+    <>
+      <BidModal open={isOpenBidModal} onOpenChange={setIsOpenBidModal} />
+      <div className='p-4 bg-white border border-gray-100 rounded-[12px] flex flex-col gap-4'>
+        <div className='flex flex-col gap-2'>
+          <div className='flex flex-row justify-between items-start'>
+            <img
+              src={images.productExample}
+              className='w-[75px] h-[75px] rounded-[8px]'
+            />
+
+            <div className='w-[73%] flex flex-col gap-2'>
+              <div className='flex flex-col gap-1'>
+                <div className='flex flex-row justify-between items-start'>
+                  <p
+                    className='w-[65%] text-[18px] font-semibold
+                 leading-[26px] text-text-900'
+                  >
+                    Tên sản phẩm
+                  </p>
+                  <Chip label='Đã ra giá' type='blue' />
+                </div>
+                <p className='text-[12px] leading-5 text-text-400'>
+                  No.NIL5-OHBN-VK
+                </p>
+              </div>
+              <CountdownTimer type={1} />
+            </div>
+          </div>
+          <div className='flex flex-row justify-between items-center'>
+            <p className='text-[14px] leading-[22px] text-text-500'>Bước giá</p>
+            <p className='text-[14px] leading-[22px] text-black'>500.000 VND</p>
+          </div>
+          <div className='flex flex-row justify-between items-center'>
+            <p className='text-[14px] leading-[22px] text-text-500'>
+              Giá hiện tại
+            </p>
+            <p className='text-[14px] leading-[22px] text-black'>
+              2.000.000 VND
+            </p>
+          </div>
+        </div>
+        <div className='flex flex-row justify-between items-center'>
+          <Button variant='outline'>Chi tiết sản phẩm</Button>
+          <Button onClick={() => setIsOpenBidModal(true)} className='px-8'>
+            Ra giá
+          </Button>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default AuctionProductCard

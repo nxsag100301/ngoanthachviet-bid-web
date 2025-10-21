@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply font-inter;
+}
+
+@font-face {
+  font-family: 'UTM Penumbra';
+  src: url('/assets/fonts/UTM-PenumbraBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'UTM Aquarelle';
+  src: url('/assets/fonts/UTM-Aquarelle.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
