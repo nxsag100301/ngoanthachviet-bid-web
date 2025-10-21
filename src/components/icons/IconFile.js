@@ -44,3 +44,8 @@ export const plusQuantity = `<svg width="30" height="30" viewBox="0 0 30 30" fil
 </defs>
 </svg>
 `
+
+export const externalLink = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.3335 5.00065H5.00016C4.07969 5.00065 3.3335 5.74684 3.3335 6.66732V15.0007C3.3335 15.9211 4.07969 16.6673 5.00016 16.6673H13.3335C14.254 16.6673 15.0002 15.9211 15.0002 15.0007V11.6673M11.6668 3.33398H16.6668M16.6668 3.33398V8.33398M16.6668 3.33398L8.3335 11.6673" stroke="#079455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`

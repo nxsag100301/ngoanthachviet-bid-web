@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
 import images from '@/constants/images'
-import Chip from './Chip'
 import CountdownTimer from './CountdownTimer'
 import { Button } from './ui/button'
 import BidModal from './BidModal'
+import Chip from './Chip'
 
 const AuctionProductCard = () => {
   const [isOpenBidModal, setIsOpenBidModal] = useState(false)
@@ -24,12 +24,11 @@ const AuctionProductCard = () => {
               <div className='flex flex-col gap-1'>
                 <div className='flex flex-row justify-between items-start'>
                   <p
-                    className='w-[65%] text-[18px] font-semibold
+                    className='text-[18px] font-semibold
                  leading-[26px] text-text-900'
                   >
                     Tên sản phẩm
                   </p>
-                  <Chip label='Đã ra giá' type='blue' />
                 </div>
                 <p className='text-[12px] leading-5 text-text-400'>
                   No.NIL5-OHBN-VK
@@ -48,6 +47,12 @@ const AuctionProductCard = () => {
             </p>
             <p className='text-[14px] leading-[22px] text-black'>
               2.000.000 VND
+            </p>
+          </div>
+          <div className='flex flex-row justify-between items-center'>
+            <Chip label={'Đã tắt tự động đặt giá'} type={'gray'} />
+            <p className='text-[14px] leading-[22px] text-success-600'>
+              Đang dẫn đầu
             </p>
           </div>
         </div>

@@ -1,6 +1,8 @@
 import * as React from 'react'
 import moment from 'moment'
 import 'moment/locale/vi'
+import { vi } from 'date-fns/locale'
+
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Input } from '@/components/ui/input'
@@ -10,7 +12,6 @@ import {
   PopoverTrigger
 } from '@/components/ui/popover'
 import icons from '@/constants/icons'
-import { vi } from 'date-fns/locale'
 
 // Set locale và capitalize tên tháng
 function formatDate(date) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { IoMenu } from 'react-icons/io5'
 
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from './ui/sheet'
@@ -22,6 +22,7 @@ const Navbar = () => {
   const [time, setTime] = useState(getCurrentTime())
   const [today] = useState(getFormattedDate())
   const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,6 +30,8 @@ const Navbar = () => {
     }, 1000)
     return () => clearInterval(interval)
   }, [])
+
+  const isActive = (path) => location.pathname === path
 
   return (
     <div className='h-[84px] bg-primary-900 py-1 sticky top-0 w-full z-40 '>
@@ -44,10 +47,20 @@ const Navbar = () => {
         {/* Desktop menu */}
         <div className='flex flex-row items-center gap-[68px]'>
           <div className='hidden lg:flex items-center gap-10 text-white text-base'>
-            <span onClick={() => navigate('/')} className='cursor-pointer'>
+            <span
+              onClick={() => navigate('/')}
+              className={`cursor-pointer ${
+                isActive('/') ? 'text-white' : 'text-text-200'
+              }`}
+            >
               Danh sách phiên đấu giá
             </span>
-            <span onClick={() => navigate('/')} className='cursor-pointer'>
+            <span
+              onClick={() => navigate('/myauctionresult')}
+              className={`cursor-pointer ${
+                isActive('/myauctionresult') ? 'text-white' : 'text-text-200'
+              }`}
+            >
               Kết quả của tôi
             </span>
           </div>
