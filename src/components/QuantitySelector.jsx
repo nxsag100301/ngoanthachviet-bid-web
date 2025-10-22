@@ -11,15 +11,15 @@ const QuantitySelector = ({ value, onChange }) => {
     onChange(value - 1)
   }
   return (
-    <div className='flex flex-row gap-[6px] items-center'>
-      <div onClick={handleMinus}>
+    <div className='flex flex-row gap-[6px] items-center select-none'>
+      <div className='cursor-pointer' onClick={handleMinus}>
         <Icon name='minusQuantity' width={30} height={30} />
       </div>
 
-      <p className='w-8 h-8 text-[16px] leading-6 text-text-950 text-center'>
+      <p className='w-8 h-8 text-[14px] sm:text-[16px] leading-6 text-text-950 text-center'>
         {value}
       </p>
-      <div onClick={handlePlus}>
+      <div className='cursor-pointer' onClick={handlePlus}>
         <Icon name='plusQuantity' width={30} height={30} />
       </div>
     </div>

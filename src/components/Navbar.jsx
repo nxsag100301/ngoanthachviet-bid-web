@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { IoMenu } from 'react-icons/io5'
 
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from './ui/sheet'
+import { DialogTitle } from './ui/dialog'
 
 const getCurrentTime = () => {
   const now = new Date()
@@ -45,8 +46,8 @@ const Navbar = () => {
         />
 
         {/* Desktop menu */}
-        <div className='flex flex-row items-center gap-[68px]'>
-          <div className='hidden lg:flex items-center gap-10 text-white text-base'>
+        <div className='flex flex-row items-center gap-10 xl:gap-[68px]'>
+          <div className='hidden lg:flex items-center gap-6 xl:gap-10 text-white text-base'>
             <span
               onClick={() => navigate('/')}
               className={`cursor-pointer ${
@@ -56,12 +57,20 @@ const Navbar = () => {
               Danh sách phiên đấu giá
             </span>
             <span
-              onClick={() => navigate('/myauctionresult')}
+              onClick={() => navigate('/auction/results')}
               className={`cursor-pointer ${
-                isActive('/myauctionresult') ? 'text-white' : 'text-text-200'
+                isActive('/auction/results') ? 'text-white' : 'text-text-200'
               }`}
             >
               Kết quả của tôi
+            </span>
+            <span
+              onClick={() => navigate('/auction/ended')}
+              className={`cursor-pointer ${
+                isActive('/auction/ended') ? 'text-white' : 'text-text-200'
+              }`}
+            >
+              Danh sách phiên đã kết thúc
             </span>
           </div>
 
@@ -80,20 +89,22 @@ const Navbar = () => {
                   </button>
                 </SheetTrigger>
                 <SheetContent className='bg-primary-900 text-white focus:outline-none focus:ring-0'>
+                  <DialogTitle className='sr-only'>Menu mobile</DialogTitle>
                   <nav className='flex flex-col gap-5 text-base pt-14'>
                     <SheetClose asChild>
-                      <span onClick={() => navigate('/')}>Trang chủ</span>
-                    </SheetClose>
-                    <SheetClose asChild>
-                      <span onClick={() => navigate('/products')}>
-                        Sản phẩm
+                      <span onClick={() => navigate('/')}>
+                        Danh sách phiên đấu giá
                       </span>
                     </SheetClose>
                     <SheetClose asChild>
-                      <span onClick={() => navigate('/news')}>Tin tức</span>
+                      <span onClick={() => navigate('/auction/results')}>
+                        Kết quả của tôi
+                      </span>
                     </SheetClose>
                     <SheetClose asChild>
-                      <span onClick={() => navigate('/auction')}>Đấu giá</span>
+                      <span onClick={() => navigate('/auction/ended')}>
+                        Danh sách phiên đã kết thúc
+                      </span>
                     </SheetClose>
                   </nav>
                 </SheetContent>

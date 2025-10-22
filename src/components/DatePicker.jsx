@@ -50,11 +50,11 @@ const DatePicker = () => {
   }
 
   return (
-    <div className='relative flex gap-2 w-[200px] 2xl:w-[272px] justify-center items-center'>
+    <div className='relative  flex gap-2 w-[50px] sm:w-[210px] 2xl:w-[272px] justify-center items-center'>
       <Input
         id='date'
         value={value}
-        className='bg-gray-100 pl-14 pr-6 py-[15px] text-[16px]
+        className='bg-gray-100 pl-14 pr-6 py-[15px] text-[16px] hidden sm:block
         2xl:text-[20px] text-text-500 border-text-50 shadow-sm font-normal text-center'
         onChange={(e) => {
           setValue(e.target.value)
@@ -76,7 +76,7 @@ const DatePicker = () => {
           <Button
             id='date-picker'
             variant='ghost'
-            className='absolute top-1/2 left-1 -translate-y-1/2'
+            className='absolute top-1/2 left-1 -translate-y-1/2 bg-gray-100 sm:bg-transparent'
           >
             <img
               src={icons.calendar}

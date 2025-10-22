@@ -44,14 +44,14 @@ const BidModal = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         hiddenCloseIcon
-        className='max-w-[628px] px-9 py-6 flex flex-col gap-5'
+        className='max-w-[628px] px-5 sm:px-9 py-4 sm:py-6 flex flex-col gap-5 w-[calc(100%-24px)] sm:w-full'
       >
         <DialogTitle className='sr-only'>Ra giá</DialogTitle>
-        <p className='text-[20px] leading-7 text-black font-semibold'>
+        <p className='text-[18px] sm:text-[20px] leading-6 sm:leading-7 text-black font-semibold'>
           Đặt giá
         </p>
-        <div className='flex flex-col gap-6'>
-          <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-5 sm:gap-6'>
+          <div className='flex flex-col gap-2 sm:gap-4'>
             <div className='flex flex-row gap-2 items-center'>
               <Switch
                 id='autoBid'
@@ -60,30 +60,30 @@ const BidModal = ({
               />
               <Label
                 htmlFor='autoBid'
-                className='text-[16px] leading-6 text-text-500'
+                className='text-[14px] sm:text-[16px] leading-6 text-text-500'
               >
                 Tự động đặt giá
               </Label>
             </div>
             <div className='flex flex-row justify-between items-center'>
-              <p className='text-[16px] leading-6 text-text-500'>
+              <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
                 Giá hiện tại
               </p>
-              <p className='text-[16px] leading-6 text-primary-600 font-semibold'>
+              <p className='text-[14px] sm:text-[16px] leading-6 text-primary-600 font-semibold'>
                 {formatPrice(currentPrice)} VND
               </p>
             </div>
             <div className='flex flex-row justify-between items-center'>
-              <p className='text-[16px] leading-6 text-text-500'>
+              <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
                 {autoBid ? 'Bước giá của phiên' : 'Bước giá'}
               </p>
-              <p className='text-[16px] leading-6 text-blue-600 font-semibold'>
+              <p className='text-[14px] sm:text-[16px] leading-6 text-blue-600 font-semibold'>
                 {formatPrice(stepPrice)} VND
               </p>
             </div>
 
             <div className='flex flex-row justify-between items-center'>
-              <p className='text-[16px] leading-6 text-text-500'>
+              <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
                 {autoBid ? 'Số lần bước giá' : 'Số bước giá đặt'}
               </p>
               <QuantitySelector value={stepAmount} onChange={setStepAmount} />
@@ -91,19 +91,19 @@ const BidModal = ({
 
             {autoBid ? (
               <div className='flex flex-row justify-between items-center'>
-                <p className='text-[16px] leading-6 text-text-500'>
+                <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
                   Bước giá của tôi
                 </p>
-                <p className='text-[16px] leading-6 text-error-600 font-semibold'>
+                <p className='text-[14px] sm:text-[16px] leading-6 text-error-600 font-semibold'>
                   {formatPrice(myStepPrice)} VND
                 </p>
               </div>
             ) : (
               <div className='flex flex-row justify-between items-center'>
-                <p className='text-[16px] leading-6 text-text-500'>
+                <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
                   Giá của tôi
                 </p>
-                <p className='text-[16px] leading-6 text-error-600 font-semibold'>
+                <p className='text-[14px] sm:text-[16px] leading-6 text-error-600 font-semibold'>
                   {formatPrice(myStepPrice + currentPrice)} VND
                 </p>
               </div>
@@ -111,7 +111,7 @@ const BidModal = ({
 
             {autoBid && (
               <div className='flex flex-row justify-between items-center'>
-                <p className='text-[16px] leading-6 text-text-500'>
+                <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
                   Tự động nâng
                 </p>
                 <QuantitySelector value={maxBidStep} onChange={setMaxBidStep} />
@@ -119,10 +119,10 @@ const BidModal = ({
             )}
             {autoBid && (
               <div className='flex flex-row justify-between items-center'>
-                <p className='text-[16px] leading-6 text-text-500'>
+                <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
                   Giá tối đa
                 </p>
-                <p className='text-[16px] leading-6 text-error-600 font-semibold'>
+                <p className='text-[14px] sm:text-[16px] leading-6 text-error-600 font-semibold'>
                   {formatPrice(maximumBidPrice)} VND
                 </p>
               </div>
