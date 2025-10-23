@@ -50,7 +50,7 @@ const ProductResultCard = () => {
             <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-500'>
               Giá mở phiên
             </p>
-            <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-black'>
+            <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-black font-semibold'>
               500.000 VND
             </p>
           </div>

@@ -11,7 +11,7 @@ const AuctionSessionResult = () => {
         <p className='text-[16px] sm:text-[20px] leading-6 sm:leading-7 text-text-950 font-semibold'>
           Phiên đấu thiện nguyện ủng hộ chương trình
         </p>
-        <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-900'>
+        <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-900 font-medium'>
           PK123456
         </p>
         <div
