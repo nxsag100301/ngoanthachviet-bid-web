@@ -78,7 +78,7 @@ const GeneralProductInformation = () => {
       >
         <div className='h-1 w-11 bg-gray-100 rouned-full mx-auto' />
         <div className='flex flex-col gap-2 sm:gap-3'>
-          <p className='text-[14px] sm:text-[18px] md:text-[14px] lg:text-[18px] leading-[26px] text-gray-950'>
+          <p className='text-[14px] sm:text-[18px] md:text-[14px] lg:text-[18px] leading-[26px] text-gray-950 font-semibold'>
             Chưa tham gia
           </p>
           <div className='flex flex-row justify-between'>
