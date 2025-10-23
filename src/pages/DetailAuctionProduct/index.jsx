@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import Icon from '@/components/icons/IconSVG'
 import ImageGallery from './components/ImageGallery'
@@ -14,12 +15,17 @@ const dataImg = [
 ]
 
 const DetailAuctionProduct = () => {
+  const navigation = useNavigate()
+
   return (
-    <div className='max-w-screen-2xl mx-auto px-6 lg:px-20 pt-5 sm:pt-9 pb-12 space-y-12'>
+    <div className='max-w-screen-2xl mx-auto px-4 lg:px-20 pt-5 sm:pt-9 pb-72 sm:pb-12 space-y-12'>
       <div className='flex flex-col gap-5 sm:gap-9'>
         <div className='flex flex-col gap-4 sm:gap-6'>
           <div className='flex flex-row items-center gap-1 sm:gap-2'>
-            <p className='text-[10px] sm:text-[20px] leading-6 sm:leading-7 text-primary-600'>
+            <p
+              onClick={() => navigation('/')}
+              className='text-[10px] sm:text-[20px] leading-6 sm:leading-7 text-primary-600 cursor-pointer'
+            >
               Danh sách phiên đấu giá
             </p>
             <Icon name='triangleRight' width={16} height={16} />

@@ -39,7 +39,7 @@ const AuctionSessionCard = () => {
             <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-text-400'>
               Mã phiên:
             </p>
-            <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-text-900'>
+            <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-text-900 font-medium'>
               PK123456
             </p>
           </div>
@@ -47,7 +47,7 @@ const AuctionSessionCard = () => {
             <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-text-400'>
               Người chủ trì:
             </p>
-            <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-text-900'>
+            <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-text-900 font-medium'>
               Huỳnh Văn B
             </p>
           </div>

@@ -6,7 +6,7 @@ import Pagination from '@/components/Pagination'
 
 const ListSessionAuctionEnded = () => {
   return (
-    <div className='max-w-screen-2xl mx-auto px-6 lg:px-20 pt-5 sm:pt-9 pb-12'>
+    <div className='max-w-screen-2xl mx-auto px-4 lg:px-20 pt-5 sm:pt-9 pb-12'>
       <div className='flex flex-col gap-4 sm:gap-6'>
         <div className='flex flex-row justify-between gap-4'>
           <p className='text-[16px] sm:text-[20px] leading-6 sm:leading-7 text-primary-950'>

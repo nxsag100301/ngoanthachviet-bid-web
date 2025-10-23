@@ -44,7 +44,7 @@ const AuctionProductCard = () => {
             <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-text-500'>
               Bước giá
             </p>
-            <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-black'>
+            <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-black font-semibold'>
               500.000 VND
             </p>
           </div>
@@ -52,13 +52,13 @@ const AuctionProductCard = () => {
             <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-text-500'>
               Giá hiện tại
             </p>
-            <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-black'>
+            <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-black font-semibold'>
               2.000.000 VND
             </p>
           </div>
           <div className='flex flex-row justify-between items-center'>
             <Chip label={'Đã tắt tự động đặt giá'} type={'gray'} />
-            <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-success-600'>
+            <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-success-600 font-semibold'>
               Đang dẫn đầu
             </p>
           </div>

@@ -36,35 +36,14 @@ const Login = () => {
     <div className='relative w-screen h-screen'>
       <img src={loginBg} className='w-screen h-screen' />
       <div
-        className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px]
-          rounded-[12px] p-9 shadow-lg flex flex-col gap-12 bg-background'
+        className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[400px] md:w-[480px]
+          rounded-[12px] p-9 shadow-lg flex flex-col gap-6 sm:gap-8 md:gap-12 bg-background'
       >
-        <img src={loginLogo} className='h-[118px] mx-auto' />
+        <img
+          src={loginLogo}
+          className='h-[60px] sm:h-[90px] md:h-[118px] mx-auto'
+        />
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
-          <p className='text-[20px] font-semibold leading-8'>
-            Nhập thông tin của bạn
-          </p>
-          <div>
-            <Label
-              htmlFor='fullName'
-              className='text-black-400 text-[16px] leading-7 font-normal'
-            >
-              Họ và tên
-            </Label>
-            <Input
-              id='fullName'
-              {...register('fullName')}
-              className={
-                errors.fullName &&
-                'border-red-500 focus:ring-0 focus:outline-none focus:border-red-500'
-              }
-            />
-            {errors.fullName && (
-              <p className='text-red-500 text-sm mt-1'>
-                {errors.fullName.message}
-              </p>
-            )}
-          </div>
           <div>
             <Label
               htmlFor='phoneNumber'

@@ -36,7 +36,7 @@ const Navbar = () => {
 
   return (
     <div className='h-[84px] bg-primary-900 py-1 sticky top-0 w-full z-40 '>
-      <div className='flex justify-between items-center h-full max-w-screen-2xl mx-auto px-6 lg:px-20'>
+      <div className='flex justify-between items-center h-full max-w-screen-2xl mx-auto px-4 lg:px-20'>
         {/* Logo */}
         <img
           onClick={() => navigate('/')}
