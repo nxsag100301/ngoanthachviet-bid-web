@@ -31,7 +31,7 @@ const ProductInSessionCard = () => {
           <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-500'>
             Bước giá
           </p>
-          <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-black'>
+          <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-black font-semibold'>
             500.000 VND
           </p>
         </div>
@@ -39,7 +39,7 @@ const ProductInSessionCard = () => {
           <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-500'>
             Giá hiện tại
           </p>
-          <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-black'>
+          <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-black font-semibold'>
             2.000.000 VND
           </p>
         </div>

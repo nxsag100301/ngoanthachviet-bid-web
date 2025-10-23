@@ -66,7 +66,8 @@ const CountdownTimer = ({ type, size = 'small' }) => {
         )}
 
         <p
-          className={`text-warning-600 whitespace-nowrap text-[9px] sm:text-[11px] 2xl:text-[12px] leading-4 sm:leading-5
+          className={`text-warning-600 whitespace-nowrap text-[9px] 
+            sm:text-[11px] 2xl:text-[12px] leading-4 sm:leading-5 font-medium
            ${size === 'medium' && '2xl:text-[14px]'}
            ${
              size === 'large' && '2xl:!text-[18px] md:!text-[16px] !text-[14px]'

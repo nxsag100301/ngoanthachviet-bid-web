@@ -18,7 +18,7 @@ const SessionInformation = () => {
           <p className='text-[11px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-600'>
             Mã phiên
           </p>
-          <p className='text-[11px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-950'>
+          <p className='text-[11px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-950 font-medium'>
             PPK00001
           </p>
         </div>
@@ -26,7 +26,7 @@ const SessionInformation = () => {
           <p className='text-[11px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-600'>
             Thời gian bắt đầu
           </p>
-          <p className='text-[11px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-950 text-right'>
+          <p className='text-[11px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-950 text-right font-medium'>
             15:00 | 20/05/2025
           </p>
         </div>
@@ -34,7 +34,7 @@ const SessionInformation = () => {
           <p className='text-[11px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-600'>
             Thời gian kết thúc
           </p>
-          <p className='text-[11px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-950 text-right'>
+          <p className='text-[11px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-950 text-right font-medium'>
             18:00 | 20/05/2025
           </p>
         </div>
@@ -42,7 +42,7 @@ const SessionInformation = () => {
           <p className='text-[11px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-600'>
             Người chủ trì
           </p>
-          <p className='w-[50%] text-[11px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-950 text-right'>
+          <p className='w-[50%] text-[11px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-950 text-right font-medium'>
             Nguyễn Huỳnh Ngọc Phương
           </p>
         </div>
