@@ -74,7 +74,7 @@ const GeneralProductInformation = () => {
       {/* Bottom mobile */}
       <div
         className='fixed sm:hidden bottom-0 bg-white w-full
-      rounded-t-[24px] -mx-4 shadow-2xl p-4 border border-gray-100'
+      rounded-t-[24px] -mx-4 shadow-[0_-2px_8px_rgba(0,0,0,0.2)] p-4 border border-gray-100 z-20'
       >
         <div className='h-1 w-11 bg-gray-100 rouned-full mx-auto' />
         <div className='flex flex-col gap-2 sm:gap-3'>
