@@ -2,14 +2,18 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
 import loginBg from '@/assets/images/loginBg.png'
 import loginLogo from '@/assets/images/loginLogo.png'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
+import { userLoginAPI } from '@/redux/slice/userSlice'
 
 const loginSchema = z.object({
-  fullName: z.string().min(1, 'Họ và tên không được để trống').trim(),
   phoneNumber: z
     .string()
     .min(10, 'Số điện thoại phải có ít nhất 10 số')
@@ -18,6 +22,9 @@ const loginSchema = z.object({
 })
 
 const Login = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -28,8 +35,14 @@ const Login = () => {
   })
 
   const onSubmit = (data) => {
-    console.log('Valid data:', data)
-    // Xử lý logic login ở đây
+    toast.promise(
+      dispatch(
+        userLoginAPI({
+          phoneNumber: data.phoneNumber,
+          password: data.phoneNumber
+        })
+      ).then(() => navigate('/'))
+    )
   }
 
   return (

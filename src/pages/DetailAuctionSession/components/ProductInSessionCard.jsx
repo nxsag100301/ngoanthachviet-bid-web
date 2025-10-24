@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import CountdownTimer from '@/components/CountdownTimer'
+import CountdownTimerSession from '@/components/CountdownTimerSession'
 import { Button } from '@/components/ui/button'
 import images from '@/constants/images'
 
@@ -24,7 +24,7 @@ const ProductInSessionCard = () => {
                 No.NIL5-OHBN-VK
               </p>
             </div>
-            <CountdownTimer type={2} />
+            <CountdownTimerSession type={2} />
           </div>
         </div>
         <div className='flex flex-row justify-between'>

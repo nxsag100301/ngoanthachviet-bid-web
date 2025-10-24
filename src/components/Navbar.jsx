@@ -1,38 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { IoMenu } from 'react-icons/io5'
+import { useSelector } from 'react-redux'
 
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from './ui/sheet'
 import { DialogTitle } from './ui/dialog'
-
-const getCurrentTime = () => {
-  const now = new Date()
-  return now.toLocaleTimeString('vi-VN', { hour12: false })
-}
-
-const getFormattedDate = () => {
-  const now = new Date()
-  const weekday = now.toLocaleDateString('vi-VN', { weekday: 'long' })
-  const day = String(now.getDate()).padStart(2, '0')
-  const month = String(now.getMonth() + 1).padStart(2, '0')
-  const year = now.getFullYear()
-  return `${weekday}, ${day}/${month}/${year}`
-}
+import { maskPhoneNumber } from '@/utils/formatter'
 
 const Navbar = () => {
-  const [time, setTime] = useState(getCurrentTime())
-  const [today] = useState(getFormattedDate())
   const navigate = useNavigate()
   const location = useLocation()
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(getCurrentTime())
-    }, 1000)
-    return () => clearInterval(interval)
-  }, [])
-
   const isActive = (path) => location.pathname === path
+
+  const { userInfo } = useSelector((state) => state.user)
 
   return (
     <div className='h-[84px] bg-primary-900 py-1 sticky top-0 w-full z-40 '>
@@ -76,9 +57,11 @@ const Navbar = () => {
 
           {/* Time & Login (Desktop) */}
           <div className='flex items-center gap-6'>
-            <div className='text-white space-y-1'>
-              <div className='text-sm'>{time}</div>
-              <div className='text-xs text-gray-300'>{today}</div>
+            <div className='text-white space-y-1 text-center'>
+              <div className='text-sm'>
+                {maskPhoneNumber(userInfo.PhoneNumber)}
+              </div>
+              <div className='text-xs text-gray-300'>{userInfo.FullName}</div>
             </div>
             {/* Sheet menu mobile */}
             <div className='lg:hidden'>

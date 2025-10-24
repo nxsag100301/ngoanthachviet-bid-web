@@ -1,10 +1,30 @@
-import React from 'react'
-import Icon from './icons/IconSVG'
-import AuctionProductCard from './AuctionProductCard'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const AuctionSessionCard = () => {
+import Icon from './icons/IconSVG'
+import AuctionProductCard from './AuctionProductCard'
+import { getDetailSessionAuction } from '@/apis/auction'
+
+const AuctionSessionCard = ({ session }) => {
   const navigate = useNavigate()
+  const [listProductInSession, setListProductInSession] = useState([])
+
+  useEffect(() => {
+    const fetchDetailSessionAuction = async () => {
+      try {
+        const res = await getDetailSessionAuction({ sessionId: session.ID })
+        if (res?.statusCodes === 200) {
+          const dataSession = res?.metadata
+          setListProductInSession(dataSession.Items)
+        }
+      } catch (error) {
+        console.log('Error getDetailSessionAuction: ', error)
+      }
+    }
+    if (session?.ID) {
+      fetchDetailSessionAuction()
+    }
+  }, [session?.ID])
 
   return (
     <div
@@ -17,7 +37,7 @@ const AuctionSessionCard = () => {
             className='w-[75%] text-[14px] sm:text-[20px] leading-5 sm:leading-7 
                 font-semibold text-text-950'
           >
-            Phiến đấu thiện nguyện ủng hộ chương trình
+            {session.Title}
           </p>
           <div
             onClick={() => navigate(`/auction/session/${1}`)}
@@ -40,7 +60,7 @@ const AuctionSessionCard = () => {
               Mã phiên:
             </p>
             <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-text-900 font-medium'>
-              PK123456
+              {session.Code}
             </p>
           </div>
           <div className='flex flex-row justify-between items-center'>
@@ -48,12 +68,15 @@ const AuctionSessionCard = () => {
               Người chủ trì:
             </p>
             <p className='text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-text-900 font-medium'>
-              Huỳnh Văn B
+              {session?.Host1}
             </p>
           </div>
         </div>
       </div>
-      <AuctionProductCard />
+      <AuctionProductCard
+        session={session}
+        listProductInSession={listProductInSession}
+      />
     </div>
   )
 }

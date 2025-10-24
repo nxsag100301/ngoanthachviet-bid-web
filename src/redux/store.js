@@ -4,10 +4,11 @@ import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import userReducer from './slice/userSlice'
-// import { injectStore } from '@/utils/authorizeAxios'
+import loadingApiReducer from './slice/loadingApiSlice'
 
 const reducers = combineReducers({
-  user: userReducer
+  user: userReducer,
+  loadingApi: loadingApiReducer
 })
 
 const persistConfig = {
@@ -26,7 +27,5 @@ const store = configureStore({
     }),
   devTools: true
 })
-
-// injectStore(store)
 
 export default store

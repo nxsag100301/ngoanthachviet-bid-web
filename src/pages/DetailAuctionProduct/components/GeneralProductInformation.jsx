@@ -1,5 +1,5 @@
 import Chip from '@/components/Chip'
-import CountdownTimer from '@/components/CountdownTimer'
+import CountdownTimerSession from '@/components/CountdownTimerSession'
 import { Button } from '@/components/ui/button'
 import React from 'react'
 
@@ -28,7 +28,7 @@ const GeneralProductInformation = () => {
             </p>
           </div>
         </div>
-        <CountdownTimer type={2} size='large' />
+        <CountdownTimerSession type={2} size='large' />
         <div className='hidden sm:block px-2 py-1 sm:px-6 sm:py-4 md:px-4 md:py-2 lg:px-6 lg:py-4 rounded-[12px] border border-gray-100 bg-white space-y-6'>
           <div className='flex flex-col gap-2 sm:gap-3'>
             <p className='text-[14px] leading-5 text-gray-950'>Chưa tham gia</p>

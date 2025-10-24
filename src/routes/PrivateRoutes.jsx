@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 
 const PrivateRoutes = () => {
   const { userInfo } = useSelector((state) => state.user)
-  const isAuthenticated = true
+  const isAuthenticated = !!userInfo
   return <>{isAuthenticated ? <Outlet /> : <Navigate to='/login' replace />}</>
 }
 

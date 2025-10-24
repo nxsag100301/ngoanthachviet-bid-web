@@ -6,14 +6,21 @@ import { Switch } from './ui/switch'
 import { Label } from './ui/label'
 import { formatPrice } from '@/utils/formatter'
 import QuantitySelector from './QuantitySelector'
+import { autoBidApi, manualBidApi } from '@/apis/auction'
+import { useSelector } from 'react-redux'
+import { selectLoadingApi } from '@/redux/slice/loadingApiSlice'
 
 const BidModal = ({
   open,
   onOpenChange,
-  currentPrice = 20000000,
-  stepPrice = 500000
+  currentPrice,
+  stepPrice,
+  auctionItemId,
+  isAutoBid = false
 }) => {
-  const [autoBid, setAutoBid] = useState(false)
+  const loading = useSelector(selectLoadingApi)
+
+  const [autoBid, setAutoBid] = useState(isAutoBid)
   const [stepAmount, setStepAmount] = useState(1)
 
   // maxBidStep sẽ nhân với bước giá của tôi và tính ra giá tối đa
@@ -38,6 +45,21 @@ const BidModal = ({
     setAutoBid(value)
     setStepAmount(1)
     setMaxBidStep(1)
+  }
+
+  const handleSubmitBid = () => {
+    if (autoBid) {
+      autoBidApi({
+        AuctionItemId: auctionItemId,
+        MaxBid: maximumBidPrice,
+        BidIncrement: myStepPrice
+      }).then(() => onOpenChange(false))
+    } else {
+      manualBidApi({
+        AuctionItemId: auctionItemId,
+        Amount: myStepPrice + currentPrice
+      }).then(() => onOpenChange(false))
+    }
   }
 
   return (
@@ -136,7 +158,9 @@ const BidModal = ({
             >
               Huỷ
             </Button>
-            <Button className='px-8'>Ra giá</Button>
+            <Button onClick={handleSubmitBid} className='px-8'>
+              Ra giá
+            </Button>
           </div>
         </div>
       </DialogContent>

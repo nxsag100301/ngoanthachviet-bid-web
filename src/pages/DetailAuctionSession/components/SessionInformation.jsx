@@ -1,4 +1,4 @@
-import CountdownTimer from '@/components/CountdownTimer'
+import CountdownTimerSession from '@/components/CountdownTimerSession'
 import React from 'react'
 
 const SessionInformation = () => {
@@ -11,7 +11,7 @@ const SessionInformation = () => {
         <p className='text-[16px] sm:text-[20px] leading-6 sm:leading-7 text-primary-950 font-semibold'>
           Phiên đấu thiện nguyện ủng hộ chương trình
         </p>
-        <CountdownTimer type={3} size='medium' />
+        <CountdownTimerSession type={3} size='medium' />
       </div>
       <div className='p-2 sm:p-4 rounded-[12px] bg-white flex flex-col gap-2 sm:gap-3'>
         <div className='flex flex-row justify-between'>
