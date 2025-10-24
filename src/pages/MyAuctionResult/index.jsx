@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-import AuctionSessionEnded from '../ListSessionAuctionEnded/components/AuctionSessionEnded'
 import DatePicker from '@/components/DatePicker'
+import AuctionSessionResult from './components/AuctionSessionResult'
 
 const MyAuctionResult = () => {
   const [selectedDate, setSelectedDate] = useState(new Date())
@@ -18,8 +18,8 @@ const MyAuctionResult = () => {
             setSelectedDate={setSelectedDate}
           />
         </div>
-        <AuctionSessionEnded />
-        <AuctionSessionEnded />
+        <AuctionSessionResult />
+        <AuctionSessionResult />
       </div>
     </div>
   )

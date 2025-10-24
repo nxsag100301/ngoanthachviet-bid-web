@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom'
 
 import Chip from '@/components/Chip'
 import Icon from '@/components/icons/IconSVG'
+import images from '@/constants/images'
 import { formatPrice } from '@/utils/formatter'
-import { IMAGE_URL } from '@/utils/constants'
 
-const ProductEndedCard = ({ product, sessionId }) => {
+const ProductResultCard = ({ product, sessionId }) => {
   const navigate = useNavigate()
 
   return (
@@ -14,7 +14,7 @@ const ProductEndedCard = ({ product, sessionId }) => {
       <div className='flex flex-col gap-2'>
         <div className='flex flex-row justify-between gap-2'>
           <img
-            src={IMAGE_URL + product?.ImageUrl}
+            src={images.productExample}
             className='w-[65px] h-[65px] sm:w-[75px] sm:h-[75px] rounded-[8px] '
           />
           <div className='w-[88%] mr-auto flex flex-row justify-between items-start'>
@@ -110,4 +110,4 @@ const ProductEndedCard = ({ product, sessionId }) => {
   )
 }
 
-export default ProductEndedCard
+export default ProductResultCard
