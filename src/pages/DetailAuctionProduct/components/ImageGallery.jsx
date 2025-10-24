@@ -2,14 +2,20 @@ import { useRef, useState, useEffect } from 'react'
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
 
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
-import images from '@/constants/images'
+import { IMAGE_URL } from '@/utils/constants'
 
 const ImageGallery = ({ listImage }) => {
-  const [mainImage, setMainImage] = useState(listImage[0])
+  const [mainImage, setMainImage] = useState()
   const scrollAreaRef = useRef(null)
   const [viewportEl, setViewportEl] = useState(null)
   const [showLeft, setShowLeft] = useState(false)
   const [showRight, setShowRight] = useState(false)
+
+  useEffect(() => {
+    if (listImage) {
+      setMainImage(listImage?.[0])
+    }
+  }, [listImage])
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -56,7 +62,7 @@ const ImageGallery = ({ listImage }) => {
     <div>
       {/* Ảnh lớn */}
       <img
-        src={images[mainImage]}
+        src={IMAGE_URL + mainImage}
         className='rounded-[12px] mb-3 sm:mb-6 h-[300px] sm:h-[483px] w-full md:h-[320px] lg:h-[420px] xl:h-[483px] object-cover mx-auto'
       />
 
@@ -74,11 +80,11 @@ const ImageGallery = ({ listImage }) => {
 
         {/* Scroll Area */}
         <ScrollArea ref={scrollAreaRef} className='w-full overflow-hidden'>
-          <div className='flex gap-3 sm:gap-6 pb-2 w-fit'>
-            {listImage.map((img, index) => (
+          <div className='flex gap-3 sm:gap-6 pb-2 w-full'>
+            {listImage?.map((img, index) => (
               <img
                 key={index}
-                src={images[img]}
+                src={IMAGE_URL + img}
                 onClick={() => handleSelectImage(img)}
                 className='rounded-[12px] cursor-pointer object-cover h-[105px] w-[120px] sm:w-[182px] md:w-[120px] lg:w-1/3 xl:w-[30.7%] sm:h-[193px] md:h-[120px] xl:h-[173px] flex-shrink-0'
               />

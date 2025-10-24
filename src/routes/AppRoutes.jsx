@@ -26,7 +26,7 @@ const AppRoutes = () => {
             element={<DetailAuctionSession />}
           />
           <Route
-            path='/auction/product/:id'
+            path='/auction/product/:sessionId/:itemId'
             element={<DetailAuctionProduct />}
           />
         </Route>

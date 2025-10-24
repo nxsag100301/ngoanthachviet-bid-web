@@ -1,34 +1,51 @@
 import * as signalR from '@microsoft/signalr'
+import { API_URL } from './constants'
 
 let connection = null
+
+// listeners[auctionId][itemId] = callback
 let listeners = {}
 
-export const getSignalRConnection = (SOCKET_URL) => {
+const SOCKET_URL = `${API_URL}/hubs/auction`
+
+export const getSignalRConnection = () => {
   if (!connection) {
     connection = new signalR.HubConnectionBuilder()
       .withUrl(SOCKET_URL)
       .withAutomaticReconnect()
       .build()
 
+    // Lắng nghe từ server
     connection.on(
       'ReceiveCountdownUpdate',
       (auctionId, itemId, type, seconds) => {
-        // Gửi đến đúng listener theo auctionId
-        if (listeners[auctionId]) {
-          listeners[auctionId](seconds, itemId, type)
+        if (
+          listeners[auctionId] &&
+          listeners[auctionId][itemId] &&
+          typeof listeners[auctionId][itemId] === 'function'
+        ) {
+          listeners[auctionId][itemId](seconds, type)
         }
       }
     )
 
-    connection.start().catch(console.error)
+    connection.start().catch((err) => {
+      console.error('❌ SignalR connection failed:', err)
+    })
   }
   return connection
 }
 
-export const subscribeCountdown = (auctionId, callback) => {
-  listeners[auctionId] = callback
+export const subscribeCountdown = (auctionId, itemId, callback) => {
+  if (!listeners[auctionId]) listeners[auctionId] = {}
+  listeners[auctionId][itemId] = callback
 }
 
-export const unsubscribeCountdown = (auctionId) => {
-  delete listeners[auctionId]
+export const unsubscribeCountdown = (auctionId, itemId) => {
+  if (listeners[auctionId]) {
+    delete listeners[auctionId][itemId]
+    if (Object.keys(listeners[auctionId]).length === 0) {
+      delete listeners[auctionId]
+    }
+  }
 }

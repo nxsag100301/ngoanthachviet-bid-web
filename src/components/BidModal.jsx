@@ -9,6 +9,7 @@ import QuantitySelector from './QuantitySelector'
 import { autoBidApi, manualBidApi } from '@/apis/auction'
 import { useSelector } from 'react-redux'
 import { selectLoadingApi } from '@/redux/slice/loadingApiSlice'
+import LoadingScreen from './LoadingScreen'
 
 const BidModal = ({
   open,
@@ -72,97 +73,106 @@ const BidModal = ({
         <p className='text-[18px] sm:text-[20px] leading-6 sm:leading-7 text-black font-semibold'>
           Đặt giá
         </p>
-        <div className='flex flex-col gap-5 sm:gap-6'>
-          <div className='flex flex-col gap-2 sm:gap-4'>
-            <div className='flex flex-row gap-2 items-center'>
-              <Switch
-                id='autoBid'
-                checked={autoBid}
-                onCheckedChange={(value) => handleSwitchAutoBid(value)}
-              />
-              <Label
-                htmlFor='autoBid'
-                className='text-[14px] sm:text-[16px] leading-6 text-text-500'
+        {loading ? (
+          <div className='flex flex-grow justify-center items-center min-h-[300px]'>
+            <div className='w-10 h-10 border-4 border-primary-600 border-t-transparent rounded-full animate-spin'></div>
+          </div>
+        ) : (
+          <div className='flex flex-col gap-5 sm:gap-6 flex-grow'>
+            <div className='flex flex-col gap-2 sm:gap-4'>
+              <div className='flex flex-row gap-2 items-center'>
+                <Switch
+                  id='autoBid'
+                  checked={autoBid}
+                  onCheckedChange={(value) => handleSwitchAutoBid(value)}
+                />
+                <Label
+                  htmlFor='autoBid'
+                  className='text-[14px] sm:text-[16px] leading-6 text-text-500'
+                >
+                  Tự động đặt giá
+                </Label>
+              </div>
+              <div className='flex flex-row justify-between items-center'>
+                <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
+                  Giá hiện tại
+                </p>
+                <p className='text-[14px] sm:text-[16px] leading-6 text-primary-600 font-semibold'>
+                  {formatPrice(currentPrice)} VND
+                </p>
+              </div>
+              <div className='flex flex-row justify-between items-center'>
+                <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
+                  {autoBid ? 'Bước giá của phiên' : 'Bước giá'}
+                </p>
+                <p className='text-[14px] sm:text-[16px] leading-6 text-blue-600 font-semibold'>
+                  {formatPrice(stepPrice)} VND
+                </p>
+              </div>
+
+              <div className='flex flex-row justify-between items-center'>
+                <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
+                  {autoBid ? 'Số lần bước giá' : 'Số bước giá đặt'}
+                </p>
+                <QuantitySelector value={stepAmount} onChange={setStepAmount} />
+              </div>
+
+              {autoBid ? (
+                <div className='flex flex-row justify-between items-center'>
+                  <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
+                    Bước giá của tôi
+                  </p>
+                  <p className='text-[14px] sm:text-[16px] leading-6 text-error-600 font-semibold'>
+                    {formatPrice(myStepPrice)} VND
+                  </p>
+                </div>
+              ) : (
+                <div className='flex flex-row justify-between items-center'>
+                  <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
+                    Giá của tôi
+                  </p>
+                  <p className='text-[14px] sm:text-[16px] leading-6 text-error-600 font-semibold'>
+                    {formatPrice(myStepPrice + currentPrice)} VND
+                  </p>
+                </div>
+              )}
+
+              {autoBid && (
+                <div className='flex flex-row justify-between items-center'>
+                  <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
+                    Tự động nâng
+                  </p>
+                  <QuantitySelector
+                    value={maxBidStep}
+                    onChange={setMaxBidStep}
+                  />
+                </div>
+              )}
+              {autoBid && (
+                <div className='flex flex-row justify-between items-center'>
+                  <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
+                    Giá tối đa
+                  </p>
+                  <p className='text-[14px] sm:text-[16px] leading-6 text-error-600 font-semibold'>
+                    {formatPrice(maximumBidPrice)} VND
+                  </p>
+                </div>
+              )}
+            </div>
+            <div className='flex flex-row gap-4 ml-auto'>
+              <Button
+                onClick={() => onOpenChange(false)}
+                variant='gray'
+                className='px-8'
               >
-                Tự động đặt giá
-              </Label>
+                Huỷ
+              </Button>
+              <Button onClick={handleSubmitBid} className='px-8'>
+                Ra giá
+              </Button>
             </div>
-            <div className='flex flex-row justify-between items-center'>
-              <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
-                Giá hiện tại
-              </p>
-              <p className='text-[14px] sm:text-[16px] leading-6 text-primary-600 font-semibold'>
-                {formatPrice(currentPrice)} VND
-              </p>
-            </div>
-            <div className='flex flex-row justify-between items-center'>
-              <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
-                {autoBid ? 'Bước giá của phiên' : 'Bước giá'}
-              </p>
-              <p className='text-[14px] sm:text-[16px] leading-6 text-blue-600 font-semibold'>
-                {formatPrice(stepPrice)} VND
-              </p>
-            </div>
-
-            <div className='flex flex-row justify-between items-center'>
-              <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
-                {autoBid ? 'Số lần bước giá' : 'Số bước giá đặt'}
-              </p>
-              <QuantitySelector value={stepAmount} onChange={setStepAmount} />
-            </div>
-
-            {autoBid ? (
-              <div className='flex flex-row justify-between items-center'>
-                <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
-                  Bước giá của tôi
-                </p>
-                <p className='text-[14px] sm:text-[16px] leading-6 text-error-600 font-semibold'>
-                  {formatPrice(myStepPrice)} VND
-                </p>
-              </div>
-            ) : (
-              <div className='flex flex-row justify-between items-center'>
-                <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
-                  Giá của tôi
-                </p>
-                <p className='text-[14px] sm:text-[16px] leading-6 text-error-600 font-semibold'>
-                  {formatPrice(myStepPrice + currentPrice)} VND
-                </p>
-              </div>
-            )}
-
-            {autoBid && (
-              <div className='flex flex-row justify-between items-center'>
-                <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
-                  Tự động nâng
-                </p>
-                <QuantitySelector value={maxBidStep} onChange={setMaxBidStep} />
-              </div>
-            )}
-            {autoBid && (
-              <div className='flex flex-row justify-between items-center'>
-                <p className='text-[14px] sm:text-[16px] leading-6 text-text-500'>
-                  Giá tối đa
-                </p>
-                <p className='text-[14px] sm:text-[16px] leading-6 text-error-600 font-semibold'>
-                  {formatPrice(maximumBidPrice)} VND
-                </p>
-              </div>
-            )}
           </div>
-          <div className='flex flex-row gap-4 ml-auto'>
-            <Button
-              onClick={() => onOpenChange(false)}
-              variant='gray'
-              className='px-8'
-            >
-              Huỷ
-            </Button>
-            <Button onClick={handleSubmitBid} className='px-8'>
-              Ra giá
-            </Button>
-          </div>
-        </div>
+        )}
       </DialogContent>
     </Dialog>
   )

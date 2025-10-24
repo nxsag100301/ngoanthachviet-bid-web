@@ -1,10 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import moment from 'moment'
 
 import DatePicker from '@/components/DatePicker'
 import AuctionSessionEnded from './components/AuctionSessionEnded'
+import { getListSessionAuction } from '@/apis/auction'
+import Pagination from '@/components/Pagination'
+import LoadingScreen from '@/components/LoadingScreen'
 
 const ListSessionAuctionEnded = () => {
+  const [listSession, setListSession] = useState([])
   const [selectedDate, setSelectedDate] = useState(new Date())
+  const [loading, setLoading] = useState(false)
+  const [page, setPage] = useState(1)
+
+  useEffect(() => {
+    const fetchListSession = async () => {
+      try {
+        setLoading(true)
+        const res = await getListSessionAuction({
+          searchText: '',
+          status: 'Ended',
+          startDate: moment(selectedDate).format('YYYY-MM-DD')
+        })
+        if (res.statusCodes === 200) {
+          setListSession(res.metadata)
+        }
+      } catch (error) {
+        console.log('Fetch list session error: ', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchListSession()
+  }, [selectedDate])
 
   return (
     <div className='max-w-screen-2xl mx-auto px-4 lg:px-20 pt-9 pb-12'>
@@ -18,9 +46,13 @@ const ListSessionAuctionEnded = () => {
             setSelectedDate={setSelectedDate}
           />
         </div>
-        <AuctionSessionEnded />
-        <AuctionSessionEnded />
+        {loading ? (
+          <LoadingScreen />
+        ) : (
+          listSession?.map((item) => <AuctionSessionEnded session={item} />)
+        )}
       </div>
+      <Pagination page={page} setPage={setPage} totalPages={10} />
     </div>
   )
 }

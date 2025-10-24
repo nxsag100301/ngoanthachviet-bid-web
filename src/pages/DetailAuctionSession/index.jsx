@@ -1,12 +1,31 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import Icon from '@/components/icons/IconSVG'
 import SessionInformation from './components/SessionInformation'
 import ListProductInSession from './components/ListProductInSession'
+import { getDetailSessionAuction } from '@/apis/auction'
 
 const DetailAuctionSession = () => {
+  const { id } = useParams()
   const navigation = useNavigate()
+
+  const [detailSession, setDetailSession] = useState(null)
+
+  useEffect(() => {
+    const fetchDetailSessionAuction = async () => {
+      try {
+        const res = await getDetailSessionAuction({ sessionId: id })
+        if (res?.statusCodes === 200) {
+          const dataSession = res?.metadata
+          setDetailSession(dataSession)
+        }
+      } catch (error) {
+        console.log('Error getDetailSessionAuction: ', error)
+      }
+    }
+    fetchDetailSessionAuction()
+  }, [id])
 
   return (
     <div className='max-w-screen-2xl mx-auto px-4 lg:px-20 pt-5 sm:pt-9 pb-12'>
@@ -25,12 +44,12 @@ const DetailAuctionSession = () => {
             </p>
           </div>
           <p className='text-[28px] sm:text-[32px] leading-9 sm:leading-10 font-bold text-black uppercase'>
-            Phiên: Mã phiên
+            Phiên: {detailSession?.Code}
           </p>
         </div>
         <div className='flex flex-col md:flex-row items-start gap-6 sm:gap-10'>
-          <SessionInformation />
-          <ListProductInSession />
+          <SessionInformation session={detailSession} />
+          <ListProductInSession session={detailSession} />
         </div>
       </div>
     </div>

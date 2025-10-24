@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import Chip from '@/components/Chip'
 import Icon from '@/components/icons/IconSVG'
 import images from '@/constants/images'
+import { formatPrice } from '@/utils/formatter'
 
-const ProductEndedCard = () => {
+const ProductEndedCard = ({ product }) => {
   const navigate = useNavigate()
 
   return (
@@ -17,8 +18,8 @@ const ProductEndedCard = () => {
             className='w-[65px] h-[65px] sm:w-[75px] sm:h-[75px] rounded-[8px] '
           />
           <div className='w-[88%] mr-auto flex flex-row justify-between items-start'>
-            <p className='w-[80%] text-[14px] sm:text-[18px] leading-[22px] sm:leading-[26px] font-semibold  text-text-900'>
-              Đá Thạch Anh Long Hoa
+            <p className='w-[75%] text-[14px] sm:text-[18px] leading-[22px] sm:leading-[26px] font-semibold  text-text-900'>
+              {product?.ProductName}
             </p>
             <div
               onClick={() => navigate(`/auction/product/${1}`)}
@@ -52,26 +53,51 @@ const ProductEndedCard = () => {
               Giá mở phiên
             </p>
             <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-black font-semibold'>
-              500.000 VND
+              {formatPrice(product?.StartingPrice)} VND
             </p>
           </div>
           <div className='flex flex-row justify-between items-center'>
-            <div className='flex flex-row items-center gap-1 cursor-pointer'>
-              <p
-                className={`text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-success-600`}
-              >
-                Lịch sử ra giá
-              </p>
-              <Icon name='externalLink' width={20} height={20} />
-            </div>
-            <Chip label={'Thắng phiên'} type={'success'} />
+            {product?.HaveParticipated && (
+              <div className='flex flex-row items-center gap-1 cursor-pointer'>
+                <p
+                  className={`text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] ${
+                    product?.IsWinner ? 'text-success-600' : 'text-error-600'
+                  }`}
+                >
+                  Lịch sử ra giá
+                </p>
+                <Icon
+                  name='externalLink'
+                  width={20}
+                  height={20}
+                  stroke={product?.IsWinner ? '#079455' : '#d92d20'}
+                />
+              </div>
+            )}
+
+            <Chip
+              label={
+                !product?.HaveParticipated
+                  ? 'Không tham gia'
+                  : product?.IsWinner
+                  ? 'Thắng phiên'
+                  : 'Thua phiên'
+              }
+              type={
+                !product?.HaveParticipated
+                  ? 'gray'
+                  : product?.IsWinner
+                  ? 'success'
+                  : 'error'
+              }
+            />
           </div>
           <div className='flex flex-row justify-between items-center'>
             <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-text-500'>
               Giá chốt phiên
             </p>
             <p className='text-[12px] sm:text-[14px] leading-5 sm:leading-[22px] text-success-600 font-semibold'>
-              3.000.000 VND
+              {formatPrice(product?.CurrentPrice)} VND
             </p>
           </div>
         </div>

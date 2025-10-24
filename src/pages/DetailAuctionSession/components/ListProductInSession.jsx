@@ -2,7 +2,7 @@ import React from 'react'
 
 import ProductInSessionCard from './ProductInSessionCard'
 
-const ListProductInSession = () => {
+const ListProductInSession = ({ session }) => {
   return (
     <div
       className='p-3 sm:p-6 rounded-[12px] border border-gray-100 bg-white 
@@ -12,8 +12,12 @@ const ListProductInSession = () => {
         Danh sách sản phẩm đấu giá
       </p>
       <div className='grid grid-cols-1 xl:grid-cols-2 gap-8'>
-        {[1, 2, 3, 4, 5, 6, 7].map((item) => (
-          <ProductInSessionCard key={item} />
+        {session?.Items?.map((item) => (
+          <ProductInSessionCard
+            key={item.AuctionItemId}
+            product={item}
+            sessionId={session?.ID}
+          />
         ))}
       </div>
     </div>

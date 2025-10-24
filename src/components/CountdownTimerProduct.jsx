@@ -131,6 +131,7 @@ const CountdownTimerProduct = ({
       connection.on(
         'ReceiveBidUpdate',
         (itemId, highestBidderId, newPrice, isAuto) => {
+          if (itemId !== auctionItemId) return
           onReceiveBidUpdate?.(itemId, highestBidderId, newPrice, isAuto)
           console.log('ReceiveBidUpdate: ', {
             itemId,
@@ -142,7 +143,7 @@ const CountdownTimerProduct = ({
       )
 
       await connection.start()
-      await connection.invoke('JoinAuctionGroup', sessionId)
+      await connection.invoke('JoinAuctionGroup', +sessionId)
       await connection.invoke('JoinItemGroup', auctionItemId)
     } catch (err) {
       console.log('SignalR connection failed:', err)
@@ -154,12 +155,14 @@ const CountdownTimerProduct = ({
     const conn = connectionRef.current
     if (conn) {
       try {
-        await conn.invoke('LeaveItemGroup', sessionId)
+        await conn.invoke('LeaveItemGroup', auctionItemId)
+        await conn.invoke('LeaveAuctionGroup', +sessionId)
         await conn.stop()
       } catch (err) {
         const msg = String(err?.message || '')
         if (
           msg.includes('LeaveItemGroup') ||
+          msg.includes('LeaveAuctionGroup') ||
           msg.includes('connection') ||
           msg.includes('closed')
         ) {
@@ -169,7 +172,7 @@ const CountdownTimerProduct = ({
         console.warn('SignalR cleanup error (non-critical):', msg)
       }
     }
-  }, [sessionId])
+  }, [auctionItemId, sessionId])
 
   useEffect(() => {
     if (!sessionId || !auctionItemId) return
@@ -203,7 +206,16 @@ const CountdownTimerProduct = ({
     <div
       className={`flex flex-row justify-between rounded-[6px] gap-1
       ${type === 1 && 'bg-gray-100'}
-      ${type === 2 && 'bg-warning-100'}
+      ${
+        type === 2 &&
+        `${
+          sessionStatus === 'Upcoming'
+            ? 'bg-blue-100'
+            : sessionStatus === 'InProgress'
+            ? 'bg-warning-100'
+            : 'bg-gray-100'
+        }`
+      }
       ${type === 3 && 'bg-white'}
       ${
         size === 'medium'

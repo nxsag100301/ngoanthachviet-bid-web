@@ -102,7 +102,11 @@ const AuctionProductCard = ({ session, listProductInSession }) => {
         {productActiveInSession?.Status === 'InProgress' && (
           <div className='flex flex-row justify-between items-center'>
             <Button
-              onClick={() => navigate(`/auction/product/${1}`)}
+              onClick={() =>
+                navigate(
+                  `/auction/product/${session?.ID}/${productActiveInSession.AuctionItemId}`
+                )
+              }
               variant='outline'
               className='h-7 sm:h-9 text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px]'
             >
@@ -120,7 +124,11 @@ const AuctionProductCard = ({ session, listProductInSession }) => {
 
         {productActiveInSession?.Status === 'Upcoming' && (
           <Button
-            onClick={() => navigate(`/auction/product/${1}`)}
+            onClick={() =>
+              navigate(
+                `/auction/product/${session?.ID}/${productActiveInSession.AuctionItemId}`
+              )
+            }
             className='h-7 sm:h-9 ml-auto px-5 text-[11px] sm:text-[14px] leading-[18px] sm:leading-[22px]'
           >
             Chi tiết

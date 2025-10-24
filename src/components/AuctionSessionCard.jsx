@@ -40,7 +40,7 @@ const AuctionSessionCard = ({ session }) => {
             {session.Title}
           </p>
           <div
-            onClick={() => navigate(`/auction/session/${1}`)}
+            onClick={() => navigate(`/auction/session/${session.ID}`)}
             className='flex flex-row items-center gap-[1px] sm:gap-[2px] md:gap-[1px] lg:gap-[2px] cursor-pointer'
           >
             <p className='text-[10px] sm:text-[14px] leading-[18px] sm:leading-[22px] text-blue-600 whitespace-nowrap'>
