@@ -59,9 +59,9 @@ const Navbar = () => {
           <div className='flex items-center gap-6'>
             <div className='text-white space-y-1 text-center'>
               <div className='text-sm'>
-                {maskPhoneNumber(userInfo.PhoneNumber)}
+                {maskPhoneNumber(userInfo?.PhoneNumber)}
               </div>
-              <div className='text-xs text-gray-300'>{userInfo.FullName}</div>
+              <div className='text-xs text-gray-300'>{userInfo?.FullName}</div>
             </div>
             {/* Sheet menu mobile */}
             <div className='lg:hidden'>
