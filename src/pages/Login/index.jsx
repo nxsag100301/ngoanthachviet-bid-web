@@ -47,7 +47,7 @@ const Login = () => {
 
   return (
     <div className='relative w-screen h-screen'>
-      <img src={loginBg} className='w-screen h-screen' />
+      <img src={loginBg} className='w-screen h-screen object-cover' />
       <div
         className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[400px] md:w-[480px]
           rounded-[12px] p-9 shadow-lg flex flex-col gap-6 sm:gap-8 md:gap-12 bg-background'

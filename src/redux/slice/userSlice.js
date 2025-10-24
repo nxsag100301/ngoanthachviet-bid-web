@@ -4,7 +4,8 @@ import { toast } from 'react-toastify'
 import axios from '@/utils/authorizeAxios'
 
 const initialState = {
-  userInfo: null
+  userInfo: null,
+  loginTime: null
 }
 
 export const userLoginAPI = createAsyncThunk(
@@ -29,18 +30,24 @@ export const userLogOutAPI = createAsyncThunk(
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    logoutByTimeout: (state) => {
+      state.userInfo = null
+      state.loginTime = null
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(userLoginAPI.fulfilled, (state, action) => {
       state.userInfo = action.payload.metadata
+      state.loginTime = Date.now()
     })
     builder.addCase(userLogOutAPI.fulfilled, (state) => {
       state.userInfo = null
+      state.loginTime = null
     })
   }
 })
 
-// eslint-disable-next-line no-empty-pattern
-export const {} = userSlice.actions
+export const { logoutByTimeout } = userSlice.actions
 
 export default userSlice.reducer

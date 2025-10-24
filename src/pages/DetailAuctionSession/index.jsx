@@ -15,9 +15,9 @@ const DetailAuctionSession = () => {
           <div className='flex flex-row items-center gap-1 sm:gap-2'>
             <p
               onClick={() => navigation('/')}
-              className='text-[16px] sm:text-[20px] leading-6 sm:leading-7 text-primary-600 cursor-pointer'
+              className='text-[16px] sm:text-[20px] leading-6 sm:leading-7 text-primary-950 cursor-pointer'
             >
-              Danh sách phiên
+              Danh sách phiên đấu giá
             </p>
             <Icon name='triangleRight' width={16} height={16} />
             <p className='text-[16px] sm:text-[20px] leading-6 sm:leading-7 text-text-500'>

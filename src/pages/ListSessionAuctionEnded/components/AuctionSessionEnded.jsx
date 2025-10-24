@@ -1,9 +1,9 @@
 import Icon from '@/components/icons/IconSVG'
 import React from 'react'
-import ProductResultCard from './ProductResultCard'
+import ProductEndedCard from './ProductEndedCard'
 import { useNavigate } from 'react-router-dom'
 
-const AuctionSessionResult = () => {
+const AuctionSessionEnded = () => {
   const navigate = useNavigate()
   return (
     <div className='p-3 sm:p-6 rounded-[16px] border border-gray-100 bg-blue-50 flex flex-col gap-3 sm:gap-6'>
@@ -31,11 +31,11 @@ const AuctionSessionResult = () => {
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-h-[474px] overflow-y-auto'>
         {[1, 2, 3, 4, 5, 6, 7].map((item) => (
-          <ProductResultCard key={item} />
+          <ProductEndedCard key={item} />
         ))}
       </div>
     </div>
   )
 }
 
-export default AuctionSessionResult
+export default AuctionSessionEnded

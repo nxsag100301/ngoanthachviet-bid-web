@@ -51,7 +51,7 @@ const DatePicker = ({ selectedDate, setSelectedDate }) => {
       <Input
         id='date'
         value={value}
-        className='bg-text-100 pl-14 pr-6 py-[15px] text-[16px] hidden sm:block
+        className='bg-text-100 pl-14 pr-6 md:py-5 2xl:py-7 text-[16px] hidden sm:block
         2xl:text-[20px] text-text-500 border-text-50 shadow-sm font-normal text-center'
         onChange={(e) => {
           setValue(e.target.value)
@@ -73,7 +73,7 @@ const DatePicker = ({ selectedDate, setSelectedDate }) => {
           <Button
             id='date-picker'
             variant='ghost'
-            className='absolute top-1/2 left-1 -translate-y-1/2 h-10 w-10 sm:h-8 sm:w-8 p-0 
+            className='absolute top-1/2 left-4 -translate-y-1/2 h-10 w-10 sm:h-8 sm:w-8 p-0 
              bg-text-100 sm:bg-transparent flex justify-center items-center'
           >
             <img

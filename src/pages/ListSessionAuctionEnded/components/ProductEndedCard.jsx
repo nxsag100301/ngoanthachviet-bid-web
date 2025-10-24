@@ -5,8 +5,9 @@ import Chip from '@/components/Chip'
 import Icon from '@/components/icons/IconSVG'
 import images from '@/constants/images'
 
-const ProductResultCard = () => {
+const ProductEndedCard = () => {
   const navigate = useNavigate()
+
   return (
     <div className='p-2 sm:p-4 rounded-[12px] border border-gray-100 bg-white'>
       <div className='flex flex-col gap-2'>
@@ -79,4 +80,4 @@ const ProductResultCard = () => {
   )
 }
 
-export default ProductResultCard
+export default ProductEndedCard
